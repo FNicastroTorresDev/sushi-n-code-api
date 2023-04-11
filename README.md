@@ -8,6 +8,9 @@ Sushi & Code - api
 
 </div>
 
+## Introducción
+
+Este proyecto es el back para el proyecto final del curso Full Stack de Rolling Code School comisión 26i.
 
 ## Desarrollo
 
