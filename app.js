@@ -1,3 +1,8 @@
-// Definir si usar module o require.
+import { Server } from "./src/server.js"
+import dotenv from 'dotenv'
 
-// Explicar estructura de carpetas.
+dotenv.config()
+const server = new Server()
+const PORT = process.env.PORT
+
+server.listen(PORT)
