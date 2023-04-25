@@ -13,7 +13,9 @@ router
   .get('/', getAllUsers)
   .get('/:userId', getOneUser)
   .post('/', createOneUser)
+  .patch('/', updateOneUser)
   .patch('/:userId', updateOneUser)
+  .delete('/', deleteOneUser)
   .delete('/:userId', deleteOneUser)
 
 export default router
