@@ -6,12 +6,18 @@ import {
   orderRoutes,
   categoryRoutes
 } from './routes/index.js'
+import { dbConnection } from './db/config.js'
 
 export class Server {
   constructor() {
     this.app = express()
+    this.connectionDb()
     this.middlewares()
     this.routes()
+  }
+
+  async connectionDb() {
+    await dbConnection()
   }
 
   middlewares() {
