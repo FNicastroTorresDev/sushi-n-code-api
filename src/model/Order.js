@@ -6,11 +6,11 @@ const OrderSchema = new Schema({
     required: [true, 'El usuario es requerido.']
   },
   date: {
-    type: Date,
+    type: String,
     required: [true, 'La fecha es requerida.']
   },
   menu: {
-    type: String,
+    type: Array,
     required: [true, 'El menú es requerido.']
   },
   state: {

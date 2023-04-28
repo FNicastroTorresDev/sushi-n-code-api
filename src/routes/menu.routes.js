@@ -14,6 +14,8 @@ router
   .get('/:menuId', getOneMenu)
   .post('/', createOneMenu)
   .patch('/:menuId', updateOneMenu)
+  .patch('/', updateOneMenu)
   .delete('/:menuId', deleteOneMenu)
+  .delete('/', deleteOneMenu)
 
 export default router

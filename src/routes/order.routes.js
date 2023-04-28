@@ -11,9 +11,11 @@ const router = Router()
 
 router
   .get('/', getAllOrders)
-  .get('/:userId', getOneOrder)
+  .get('/:orderId', getOneOrder)
   .post('/', createOneOrder)
-  .patch('/:userId', updateOneOrder)
-  .delete('/:userId', deleteOneOrder)
+  .patch('/:orderId', updateOneOrder)
+  .patch('/', updateOneOrder)
+  .delete('/:orderId', deleteOneOrder)
+  .delete('/', deleteOneOrder)
 
 export default router
