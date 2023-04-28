@@ -104,9 +104,9 @@ export const updateOneUser = async (req, res) => {
   if (
     !userId ||
     Object.keys(body).length === 0
-    ) {
+  ) {
     return res.status(400).send({
-      message: 'Faltan datos. Body vacío o sin id en la solicitud.'
+      message: 'Faltan datos.'
     })
   }
 
@@ -140,7 +140,7 @@ export const deleteOneUser = async (req, res) => {
   }
 
   try {
-    const deletedUser = await User.findByIdAndDelete({  _id: userId})
+    const deletedUser = await User.findByIdAndDelete({userId})
     if (deletedUser) {
       return res.status(201).send({
         message: 'El usuario ha sido eliminado.',
@@ -148,7 +148,7 @@ export const deleteOneUser = async (req, res) => {
       })
     }
   } catch (error) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: 'El usuario no existe.',
       error: error.message
     })

@@ -1,5 +1,6 @@
 import User from '../model/User.js'
 import Menu from '../model/Menu.js'
+import Category from '../model/Category.js'
 
 export const userExists = async (userToValidate) => {
   return await User.findOne({ email: userToValidate})
@@ -16,4 +17,8 @@ export const menuesExists = async (menuesToValidate) => {
     }
   })
   return true
+}
+
+export const categoryExists = (categoryToValidate) => {
+  return Category.findOne({ name: categoryToValidate})
 }

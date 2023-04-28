@@ -4,7 +4,8 @@ import {
   menuRoutes, 
   userRoutes,
   orderRoutes,
-  categoryRoutes
+  categoryRoutes,
+  loginRoutes
 } from './routes/index.js'
 import { dbConnection } from './db/config.js'
 
@@ -30,6 +31,7 @@ export class Server {
     this.app.use('/api/menues', menuRoutes)
     this.app.use('/api/orders', orderRoutes)
     this.app.use('/api/categories', categoryRoutes)
+    this.app.use('/api/login', loginRoutes)
   }
 
   listen(port) {
