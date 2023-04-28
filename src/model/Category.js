@@ -7,7 +7,9 @@ const CategorySchema = new Schema({
     unique: true
   },
   state: {
-    type: Boolean,
-    default: true
+    type: String,
+    default: 'Activo'
   }
 })
+
+export default model('categories', CategorySchema)

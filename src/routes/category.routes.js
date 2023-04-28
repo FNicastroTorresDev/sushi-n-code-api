@@ -14,6 +14,8 @@ router
   .get('/:categoryId', getOneCategory)
   .post('/', createOneCategory)
   .patch('/:categoryId', updateOneCategory)
+  .patch('/', updateOneCategory)
   .delete('/:categoryId', deleteOneCategory)
+  .delete('/', deleteOneCategory)
 
 export default router
