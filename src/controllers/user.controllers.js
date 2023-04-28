@@ -1,3 +1,4 @@
+import { userExists } from '../db/validations.js'
 import { encryptPassword } from '../helpers/encryptPassword.js'
 import User from '../model/User.js'
 
@@ -5,7 +6,7 @@ export const getAllUsers = async (req, res) => {
   const { limit = 10, from = 0 } = req.query
 
   try {
-    const [  allUsers, total ] = await Promise.all([
+    const [ allUsers, total ] = await Promise.all([
       User.find({})
         .skip(from)
         .limit(limit),
@@ -24,7 +25,7 @@ export const getAllUsers = async (req, res) => {
 }
 
 export const getOneUser = async (req, res) => {
-  const {userId} = req.params
+  const { userId } = req.params
   
   try {
     const foundUser = await User.findById(userId)
@@ -64,9 +65,7 @@ export const createOneUser = async (req, res) => {
     })
   }
 
-  const existEmail = await User.findOne({ email: email })
-
-  if (existEmail) {
+  if (await userExists(email)) {
     return res.status(400).send({
       message: 'El email ya existe.'
     })
@@ -112,7 +111,11 @@ export const updateOneUser = async (req, res) => {
   }
 
   try {
-    const updatedUser = await User.findByIdAndUpdate(userId, body, { returnDocument: 'after' })
+    const updatedUser = await User.findByIdAndUpdate(
+      userId, 
+      body, 
+      { returnDocument: 'after' }
+    )
     if (updatedUser) {
       return res.status(201).send({
         message: 'Actualizado un usuario.',
