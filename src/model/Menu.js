@@ -6,6 +6,10 @@ const MenuSchema = new Schema({
     required: [true, 'El nombre es requerido.'],
     unique: true
   },
+  imgUrl: {
+    type: String,
+    required: [true, 'La imagen es requerida.']
+  },
   state: {
     type: String,
     default: 'Disponible'

@@ -6,11 +6,14 @@ import {
   getOneMenu,
   updateOneMenu
 } from '../controllers/menu.controllers.js'
+import { validateToken } from '../middlewares/validateToken.js'
 
 const router = Router()
 
 router
-  .get('/', getAllMenues)
+  .get('/', [
+    validateToken
+  ], getAllMenues)
   .get('/:menuId', getOneMenu)
   .post('/', createOneMenu)
   .patch('/:menuId', updateOneMenu)

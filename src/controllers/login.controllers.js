@@ -10,7 +10,7 @@ export const authentication = async (req, res) => {
   const user = await User.findOne({ email })
 
   if (!user) {
-    return res.status(400).send({
+    return res.status(404).json({
       message: 'Usuario y/o contraseña incorrectos.' 
     })
   }
@@ -18,7 +18,7 @@ export const authentication = async (req, res) => {
   const isMatch = compareSync(password, user.password)
 
   if (!isMatch) {
-    return res.status(400).send({
+    return res.status(404).json({
       message: 'Usuario y/o contraseña incorrectos.'
     })
   }
@@ -33,5 +33,11 @@ export const authentication = async (req, res) => {
   res.json({
     message: `Bienvenido/a ${user.fullname}.`,
     accessToken
+  })
+}
+
+export const validateOk = async (req, res) => {
+  return res.status(201).send({
+    message: 'Token válido.'
   })
 }

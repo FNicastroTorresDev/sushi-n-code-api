@@ -6,11 +6,14 @@ import {
   updateOneOrder,
   deleteOneOrder
 } from '../controllers/order.controllers.js'
+import { validateToken } from '../middlewares/validateToken.js'
 
 const router = Router()
 
 router
-  .get('/', getAllOrders)
+  .get('/', [
+    validateToken
+  ],getAllOrders)
   .get('/:orderId', getOneOrder)
   .post('/', createOneOrder)
   .patch('/:orderId', updateOneOrder)
