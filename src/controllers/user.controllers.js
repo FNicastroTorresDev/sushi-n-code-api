@@ -19,7 +19,8 @@ export const getAllUsers = async (req, res) => {
   } catch (err) {
     return res.status(500).send({
       message: 'Error al obtener los usuarios.',
-      error: err.message
+      error: err.message,
+      error_code: 500
     })
   }
 }
@@ -61,13 +62,13 @@ export const createOneUser = async (req, res) => {
     !password
   ) {
     return res.status(400).send({
-      message: 'Faltan datos.'
+      error: 'Faltan datos.'
     })
   }
 
   if (await userExists(email)) {
-    return res.status(400).send({
-      message: 'El email ya existe.'
+    return res.status(409).send({
+      error: 'El email ya está registrado.'
     })
   }
   
@@ -84,7 +85,7 @@ export const createOneUser = async (req, res) => {
   try {
     await user.save()
     return res.status(201).send({
-      message: `Creado el usuario ${email}.`
+      message: `¡Bienvenido/a ${fullname}!`
     })
   } catch (error) {
     return res.status(400).send({

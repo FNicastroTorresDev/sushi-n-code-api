@@ -49,6 +49,7 @@ export const createOneMenu = async (req, res) => {
   const {
     name,
     state,
+    imgUrl,
     price,
     details,
     category
@@ -56,21 +57,23 @@ export const createOneMenu = async (req, res) => {
 
   if (
     !name ||
+    !imgUrl ||
     !price
   ) { 
     return res.status(400).send({
-      message: 'Faltan datos.'
+      error: 'Faltan datos.'
     })
   }
 
   if (await menuExists(name)) {
     return res.status(400).send({
-      message: 'El menú ya existe.'
+      error: 'El menú ya existe.'
     })
   }
 
   const menu = await Menu({
     name,
+    imgUrl,
     state,
     price,
     details,
@@ -80,14 +83,15 @@ export const createOneMenu = async (req, res) => {
   try {
     await menu.save()
     return res.status(201).send({
-      message: `El menú ${name} creado.`,
+      message: `Se creó menú ${name}.`,
       data: menu
     })
   } catch (error) {
     return res.status(500).send({
-      message: 'Error al crear el menú.',
+      error: 'Error al crear el menú.',
       fields: {
         name: error.errors?.name?.message,
+        imgUrl: error.errors?.imgUrl?.message,
         price: error.errors?.price?.message
       }
     })
@@ -139,8 +143,8 @@ export const deleteOneMenu = async (req, res) => {
     const deletedMenu = await Menu.findByIdAndDelete(menuId)
     if (deletedMenu) {
       return res.status(201).send({
-        message: 'El menú ha sido eliminado.',
-        data: deletedMenu
+        message: 'Menú eliminado.',
+        // data: deletedMenu
       })
     }
   } catch (error) {
