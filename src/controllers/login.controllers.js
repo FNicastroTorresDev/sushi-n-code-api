@@ -32,6 +32,7 @@ export const authentication = async (req, res) => {
 
   res.json({
     message: `Bienvenido/a ${user.fullname}.`,
+    user: user.email,
     accessToken
   })
 }

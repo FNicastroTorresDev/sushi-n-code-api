@@ -71,7 +71,7 @@ export const createOneOrder = async (req, res) => {
     !isMenuExist
   ) {
     return res.status(400).send({
-      message: 'El usuario y/o menú que no existen.'
+      error: 'El usuario y/o menú que no existen.'
     })
   }
 
@@ -90,7 +90,7 @@ export const createOneOrder = async (req, res) => {
     })
   } catch (error) {
     return res.status(500).send({
-      message: 'Error al crear la orden.',
+      error: 'Error al crear el pedido.',
       fields: {
         user: error.errors?.user?.message,
         date: error.errors?.date?.message,
