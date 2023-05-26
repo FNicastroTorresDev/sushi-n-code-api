@@ -25,7 +25,9 @@ export const authentication = async (req, res) => {
 
   const payload = {
     id: user._id,
-    email: user.email
+    email: user.email,
+    role: user.role,
+    state: user.state
   }
 
   const accessToken = jwt.sign(payload, signature, { expiresIn: '1h' })

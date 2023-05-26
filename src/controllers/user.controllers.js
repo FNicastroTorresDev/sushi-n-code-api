@@ -67,7 +67,7 @@ export const createOneUser = async (req, res) => {
   }
 
   if (await userExists(email)) {
-    return res.status(409).send({
+    return res.status(400).send({
       error: 'El email ya está registrado.'
     })
   }
